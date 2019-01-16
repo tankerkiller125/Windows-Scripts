@@ -26,6 +26,12 @@ FUNCTION GetApplication($name, $version) {
     }
 }
 
+FUNCTION UnisntallApplication($name) {
+    $applications = Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*
+    $app = $applications | Where-Object {$_.DisplayName -match $name} | Select-Object DisplayName, UninstallString
+    cmd.exe /C $app.UninstallString
+}
+
 
 if ($AppName -ne $null -And $AppPath -ne $null -And $AppVersion -eq $null) {
     # If only the name is specified and the application exist do not continue
@@ -42,6 +48,9 @@ elseif ($AppName -ne $null -And $AppPath -ne $null -And $AppVersion -ne $null) {
     if (GetApplition($AppName, $AppVersion)) {
         Write-Output "Application already installed, skipping"
         exit 0
+    } elseif (GetApplication($AppName)) {
+        # TODO: Handle update logic
+        Write-Output "Application needs an update"
     }
     # This should install the application
     cmd.exe /C "$AppPath"
