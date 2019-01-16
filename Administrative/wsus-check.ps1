@@ -1,2 +1,7 @@
-(Get-WsusServer -Name "carpo" -PortNumber 8530).GetSubscription().GetSynchronizationProgress()
-(Get-WsusServer -Name "carpo" -PortNumber 8530).GetSubscription().GetSynchronizationStatus()
+Param(
+    $WsusServer,
+    $WsusPort
+)
+
+(Get-WsusServer -Name $WsusServer -PortNumber $WsusPort).GetSubscription().GetSynchronizationProgress()
+(Get-WsusServer -Name $WsusServer -PortNumber $WsusPort).GetSubscription().GetSynchronizationStatus()
