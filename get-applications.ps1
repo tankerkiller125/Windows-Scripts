@@ -1,0 +1,1 @@
+Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, UninstallString | Out-GridView -PassThru -Title 'Programs'
