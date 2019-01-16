@@ -32,32 +32,31 @@ FUNCTION UnisntallApplication($name) {
     cmd.exe /C $app.UninstallString
 }
 
-
 if ($AppName -ne $null -And $AppPath -ne $null -And $AppVersion -eq $null) {
     # If only the name is specified and the application exist do not continue
     if (GetApplication($AppName)) {
-        Write-Output "Application already installed, skipping"
+        Write-Host "Application already installed, skipping" -ForegroundColor yellow
         exit 0
     }
     # This should execute the installer
     cmd.exe /C "$AppPath"
-    Write-Output "Application Installed"
+    Write-Host "Application Installed" -ForegroundColor green
     exit 0
 }
 elseif ($AppName -ne $null -And $AppPath -ne $null -And $AppVersion -ne $null) {
     if (GetApplition($AppName, $AppVersion)) {
-        Write-Output "Application already installed, skipping"
+        Write-Host "Application already installed, skipping" -ForegroundColor yellow
         exit 0
     } elseif (GetApplication($AppName)) {
         # TODO: Handle update logic
-        Write-Output "Application needs an update"
+        Write-Host "Application needs an update" -ForegroundColor blue
     }
     # This should install the application
     cmd.exe /C "$AppPath"
-    Write-Output "Application Installed"
+    Write-Host "Application Installed" -ForegroundColor green
     exit 0
 }
 elseif ($AppName -eq $null -Or $AppPath -eq $null) {
-    Write-Error "You must specify an AppName and an AppPath"
+    Write-Host "You must specify -AppName and -AppPath" -ForegroundColor red
     exit 2
 }
