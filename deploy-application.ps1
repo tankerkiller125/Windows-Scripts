@@ -7,6 +7,7 @@
 # When using this script to deploy via GPO you MUST use a silent switch (/s, /silent, /q, etc.) as an argument
 # or your application will not deploy properly. You can find a large list of application silent install parameters
 # at https://www.manageengine.com/products/desktop-central/software-installation/windows-software.html
+#
 
 Param(
     $AppPath,
