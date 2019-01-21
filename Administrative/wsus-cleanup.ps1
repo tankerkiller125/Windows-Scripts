@@ -13,7 +13,7 @@ $subject = "WSUS Cleanup"
 try {
     Start-Transcript $LogPath
 
-    Get-WsusServer -Name $WsusServer -PortNumber $WsusServer | Invoke-WsusServerCleanup -CleanupObsoleteComputers -CleanupObsoleteUpdates -CleanupUnneededContentFiles -CompressUpdates -DeclineExpiredUpdates -DeclineSupersededUpdates
+    Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupObsoleteComputers -CleanupObsoleteUpdates -CleanupUnneededContentFiles -CompressUpdates -DeclineExpiredUpdates -DeclineSupersededUpdates
 
     Invoke-WsusSpringClean -DeclineSupersededUpdates -DeclinePrereleaseUpdates -DeclineLanguagesExclude @('en-US') -DeclineArchitectures @('ia64') -DeclineSecurityOnlyUpdates
 
