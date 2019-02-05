@@ -1,6 +1,6 @@
 # CSV Meta Data
 $DateTime = Get-Date -f "yyyy-MM" 
-$CSVFile = $DateTime + "_ADUsers.csv" 
+$CSVFile = "..\data\" + $DateTime + "_ADUsers.csv" 
 $CSVOutput = @() 
 
 # Get all Users

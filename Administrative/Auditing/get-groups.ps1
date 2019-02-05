@@ -3,7 +3,7 @@
 $DateTime = Get-Date -f "yyyy-MM" 
  
 #// Set CSV file name 
-$CSVFile = $DateTime + "_ADGroups.csv" 
+$CSVFile = "..\data\" + $DateTime + "_ADGroups.csv" 
  
 #// Create emy array for CSV data 
 $CSVOutput = @() 
